@@ -6,7 +6,8 @@
 
     <fragment android:id="@+id/splashFragment" android:name="hollybits.ucursi.splash.SplashFragment"
               android:label="splash_fragment" tools:layout="@layout/splash_fragment">
-        <action android:id="@+id/action_user_must_login" app:destination="@id/loginFragment"/>
+        <action android:id="@+id/action_user_must_login" app:destination="@id/loginFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"/>
         <action android:id="@+id/action_user_is_logined_moving_to_menu" app:destination="@id/placeholder"/>
     </fragment>
     <fragment android:id="@+id/loginFragment" android:name="hollybits.ucursi.login.LoginFragment"
