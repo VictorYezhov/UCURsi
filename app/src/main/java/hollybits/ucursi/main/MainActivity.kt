@@ -27,5 +27,6 @@ class MainActivity : AppCompatActivity(),
 
     override fun userIsAlreadyLoggedIn() {
         Log.i(TAG, "userIsAlreadyLoggedIn")
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.user_authenticated)
     }
 }
