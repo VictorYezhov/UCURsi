@@ -22,7 +22,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
     }
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    private val userLoginLiveData = MutableLiveData<Boolean>()
+    private val userLoginLiveData = MutableLiveData<GoogleSignInAccount>()
     private val errorLiveData = MutableLiveData<String>()
 
 
@@ -40,7 +40,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
         val account = GoogleSignIn.getLastSignedInAccount(getApplication())
         account?.apply {
             Log.i(TAG, "checkUser, user is already logged in")
-            userLoginLiveData.value = true // This means that user is already logged in with google credentials
+            userLoginLiveData.value = account // This means that user is already logged in with google credentials
         }
     }
     fun handleSignInResult(task : Task<GoogleSignInAccount>){
@@ -49,9 +49,10 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
             Log.i(TAG, "handleSignInResult, success")
             Log.i(TAG, "handleSignInResult, user email : ${account?.email}")
             Log.i(TAG, "handleSignInResult, user name : ${account?.displayName}")
+            Log.i(TAG, "handleSignInResult, token: ${account?.idToken}")
 
             // Signed in successfully, show authenticated UI.
-            userLoginLiveData.value = true
+            userLoginLiveData.value = account
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

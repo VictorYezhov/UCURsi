@@ -21,6 +21,7 @@ import android.content.Intent
 
 import android.util.Log
 import hollybits.ucursi.common.ErrorObserver
+import hollybits.ucursi.main.AuthDataViewModel
 
 
 class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
@@ -30,19 +31,21 @@ class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
         private const val GOOGLE_SG_CODE = 565
         fun newInstance() = LoginFragment()
     }
-    interface LoginEvents{
+
+    interface LoginEvents {
         fun userIsAlreadyLoggedIn()
     }
 
     private lateinit var viewModel: LoginViewModel
+    private lateinit var authViewModel: AuthDataViewModel
     private var eventsHandler: LoginEvents? = null
-    private lateinit var googleSignInClient:GoogleSignInClient
+    private lateinit var googleSignInClient: GoogleSignInClient
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is LoginEvents){
+        if (context is LoginEvents) {
             eventsHandler = context
-        }else{
+        } else {
             throw RuntimeException("$context must implement LoginEvents interface in order to communicate with this fragment")
         }
     }
@@ -57,10 +60,13 @@ class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        val gso =  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        authViewModel = ViewModelProviders.of(activity!!).get(AuthDataViewModel::class.java)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
+            .requestId()
+            .requestIdToken("xxx")
             .build()
-        googleSignInClient =  GoogleSignIn.getClient(activity!!, gso)
+        googleSignInClient = GoogleSignIn.getClient(activity!!, gso)
         viewModel.initGoogleClient(googleSignInClient)
         viewModel.checkUser()
         setupDataListeners()
@@ -68,16 +74,16 @@ class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
 
     }
 
-    private fun setupDataListeners(){
+    private fun setupDataListeners() {
         viewModel.isUserLoginned().observe(this, Observer {
-            if(it){
-                eventsHandler?.userIsAlreadyLoggedIn()
-            }
+            authViewModel.initAccount(it)
+            eventsHandler?.userIsAlreadyLoggedIn()
         })
 
         viewModel.errorState().observe(this, ErrorObserver(this))
     }
-    private fun setupListeners(){
+
+    private fun setupListeners() {
         login_button.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent, GOOGLE_SG_CODE)
         }
