@@ -27,7 +27,7 @@ class OrderDocumentFragment : Fragment() {
         val spinner: Spinner = view.findViewById(R.id.typeOfDocument)
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
-            activity,
+            activity!!.applicationContext,
             R.array.type_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
