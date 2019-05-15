@@ -1,5 +1,6 @@
 package hollybits.ucursi.main_menu
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import hollybits.ucursi.R
+import kotlinx.android.synthetic.main.main_menu_fragment.*
 
 class MainMenuFragment : Fragment() {
 
@@ -15,7 +17,22 @@ class MainMenuFragment : Fragment() {
         fun newInstance() = MainMenuFragment()
     }
 
+    interface MainMenuEvents{
+        fun moveToAccount()
+        fun moveToOrderDocument()
+    }
+
     private lateinit var viewModel: MainMenuViewModel
+    private var events:MainMenuEvents? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is MainMenuEvents) {
+            events = context
+        } else {
+            throw RuntimeException("$context must implement LoginEvents interface in order to communicate with this fragment")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +44,20 @@ class MainMenuFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        documentCardView.setOnClickListener {
+            events!!.moveToOrderDocument()
+        }
+
+        accountImageView.setOnClickListener {
+            events!!.moveToAccount()
+        }
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        events = null
+    }
+
 
 }

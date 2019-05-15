@@ -6,11 +6,13 @@ import android.util.Log
 import androidx.navigation.Navigation
 import hollybits.ucursi.R
 import hollybits.ucursi.login.LoginFragment
+import hollybits.ucursi.main_menu.MainMenuFragment
 import hollybits.ucursi.splash.SplashFragment
 
 class MainActivity : AppCompatActivity(),
     SplashFragment.SplashEvents,
-    LoginFragment.LoginEvents{
+    LoginFragment.LoginEvents,
+    MainMenuFragment.MainMenuEvents{
 
     companion object {
         private const val TAG  = "MainActivity"
@@ -23,6 +25,14 @@ class MainActivity : AppCompatActivity(),
 
     override fun moveToLogin() {
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_user_must_login)
+    }
+
+    override fun moveToAccount() {
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.personalAccount)
+    }
+
+    override fun moveToOrderDocument() {
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.orderDocumentFragment)
     }
 
     override fun userIsAlreadyLoggedIn() {

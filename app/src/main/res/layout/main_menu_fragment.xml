@@ -54,7 +54,7 @@
             android:id="@+id/cardView"
             android:layout_marginTop="46dp"
             app:layout_constraintTop_toTopOf="@+id/guideline" app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toStartOf="@+id/cardView2">
+            app:layout_constraintEnd_toStartOf="@+id/documentCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
             android:elevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="19dp"
-            android:id="@+id/cardView2"
+            android:id="@+id/documentCardView"
             android:layout_marginTop="46dp"
             app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -178,9 +178,9 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             android:elevation="5dp"
-            android:layout_marginTop="38dp" app:layout_constraintTop_toBottomOf="@+id/cardView2"
-            app:layout_constraintEnd_toEndOf="@+id/cardView2"
-            app:layout_constraintStart_toStartOf="@+id/cardView2">
+            android:layout_marginTop="38dp" app:layout_constraintTop_toBottomOf="@+id/documentCardView"
+            app:layout_constraintEnd_toEndOf="@+id/documentCardView"
+            app:layout_constraintStart_toStartOf="@+id/documentCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
