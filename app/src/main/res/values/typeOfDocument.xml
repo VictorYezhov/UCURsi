@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type_array">
+        <item>Довідка про навчання</item>
+        <item>Довідка на військомат</item>
+    </string-array>
+</resources>
