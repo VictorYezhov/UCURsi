@@ -23,7 +23,7 @@ class SplashFragment : Fragment() {
     private var events: SplashEvents? = null
 
     private lateinit var viewModel: SplashViewModel
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is SplashEvents) {
             events = context

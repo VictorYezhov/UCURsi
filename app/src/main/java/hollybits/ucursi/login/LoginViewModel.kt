@@ -15,6 +15,8 @@ import android.util.Log
 import hollybits.ucursi.R
 
 
+
+
 class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
     companion object {
@@ -50,6 +52,8 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
             Log.i(TAG, "handleSignInResult, user email : ${account?.email}")
             Log.i(TAG, "handleSignInResult, user name : ${account?.displayName}")
             Log.i(TAG, "handleSignInResult, token: ${account?.idToken}")
+            Log.i(TAG, "server auth code: ${account?.serverAuthCode}")
+
 
             // Signed in successfully, show authenticated UI.
             userLoginLiveData.value = account
@@ -57,6 +61,9 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.i(TAG, "signInResult:failed code=" + e.statusCode)
+            Log.i(TAG, e.message)
+            e.printStackTrace()
+            Log.i(TAG, e.localizedMessage)
             errorLiveData.value = (getApplication() as Context).resources.getString(R.string.sign_in_error)
         }
 

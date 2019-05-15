@@ -20,8 +20,12 @@ import com.google.android.gms.tasks.Task
 import android.content.Intent
 
 import android.util.Log
+import com.google.android.gms.common.Scopes
+import com.google.android.gms.common.api.Scope
 import hollybits.ucursi.common.ErrorObserver
 import hollybits.ucursi.main.AuthDataViewModel
+
+
 
 
 class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
@@ -62,9 +66,9 @@ class LoginFragment : Fragment(), ErrorObserver.ErrorDisplayer {
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         authViewModel = ViewModelProviders.of(activity!!).get(AuthDataViewModel::class.java)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+           // .requestScopes(Scope(Scopes.PROFILE))
+           // .requestServerAuthCode(getString(R.string.server_client_id))
             .requestEmail()
-            .requestId()
-            .requestIdToken("xxx")
             .build()
         googleSignInClient = GoogleSignIn.getClient(activity!!, gso)
         viewModel.initGoogleClient(googleSignInClient)

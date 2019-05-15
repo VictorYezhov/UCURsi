@@ -11,8 +11,11 @@
     </fragment>
     <fragment android:id="@+id/loginFragment" android:name="hollybits.ucursi.login.LoginFragment"
               android:label="login_fragment" tools:layout="@layout/login_fragment">
-        <action android:id="@+id/user_authenticated" app:destination="@id/testDataShower"/>
+        <action android:id="@+id/user_authenticated" app:destination="@+id/mainMenuFragment"/>
     </fragment>
     <fragment android:id="@+id/testDataShower"
-              android:label="fragment_test_data_shower" tools:layout="@layout/fragment_test_data_shower"/>
+              android:label="fragment_test_data_shower" tools:layout="@layout/fragment_test_data_shower"
+              android:name="hollybits.ucursi.common.TestDataShower"/>
+    <fragment android:id="@+id/mainMenuFragment" android:name="hollybits.ucursi.main_menu.MainMenuFragment"
+              android:label="main_menu_fragment" tools:layout="@layout/main_menu_fragment"/>
 </navigation>
