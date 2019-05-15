@@ -1,3 +1,5 @@
+package hollybits.ucursi.personal_account.data
+
 import com.google.gson.annotations.SerializedName
 
 
