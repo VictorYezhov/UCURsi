@@ -44,13 +44,8 @@ class MainMenuFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ServicesMenuViewModel::class.java)
-
         documentCardView.setOnClickListener {
             events!!.moveToOrderDocument()
-        }
-
-        accountImageView.setOnClickListener {
-            events!!.moveToAccount()
         }
     }
 
