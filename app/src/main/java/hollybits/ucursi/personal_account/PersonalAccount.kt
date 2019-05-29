@@ -12,7 +12,6 @@ import com.google.android.gms.auth.api.Auth
 
 import hollybits.ucursi.R
 import hollybits.ucursi.main.AuthDataViewModel
-import kotlinx.android.synthetic.main.fragment_test_data_shower.*
 import kotlinx.android.synthetic.main.personal_account_fragment.*
 import kotlinx.android.synthetic.main.personal_account_fragment.view.*
 
