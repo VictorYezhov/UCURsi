@@ -12,15 +12,18 @@ class AccountViewModel : ViewModel() {
 
     companion object {
         private const val TAG = "AccountViewModel"
+        private const val DEF_VAL = "Not Set"
     }
     private val dataFetcher = PersonalDataFetcher()
 
+    private var userInfo : UserInfo? = null
     val userName = MutableLiveData<String>()
     val userFatherName = MutableLiveData<String>()
     val userPhone  = MutableLiveData<String>()
     val userEmail = MutableLiveData<String>()
     val usersGrop = MutableLiveData<String>()
     val errorIndicator = MutableLiveData<Boolean>()
+    val isDataLoaded = MutableLiveData<Boolean>()
 
 
 
@@ -34,13 +37,24 @@ class AccountViewModel : ViewModel() {
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
                 Log.i(TAG, "loadAccountData -> onResponse, isSuccessful: ${response.isSuccessful} ")
                 if(response.isSuccessful && response.body() != null){
-                    var userInfo = response.body()!!
-                    userName.value = userInfo.user.name + " " + userInfo.user.surname
+                    userInfo = response.body()
+                    if(userInfo != null) {
+                        isDataLoaded.value = true
+                        userName.value = userInfo!!.user.name + " " + userInfo!!.user.surname
 
-                    userPhone.value = userInfo.user.phone
-                    userEmail.value = userInfo.user.email
-                    usersGrop.value = userInfo.departament.departmentName
-                    userFatherName.value = userInfo.user.displayName.split(" ")[2]
+                        if (userInfo!!.user.phone == null) {
+                            userPhone.value = DEF_VAL
+                        } else {
+                            userPhone.value = userInfo!!.user.phone
+                        }
+                        userEmail.value = userInfo!!.user.email
+                        usersGrop.value = userInfo!!.departament.departmentName
+                        val displayName = userInfo!!.user.displayName
+                        userFatherName.value = "Not Set"
+                        displayName?.let {
+                            userFatherName.value = it.split(" ")[2]
+                        }
+                    }
 
                 }else{
                     Log.i(TAG, "loadAccountData -> onResponse,error ")
@@ -53,6 +67,7 @@ class AccountViewModel : ViewModel() {
 
     }
 
+    fun getUserInfo() = userInfo
 
 
 
