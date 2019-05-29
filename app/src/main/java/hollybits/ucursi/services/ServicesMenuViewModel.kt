@@ -1,7 +1,7 @@
-package hollybits.ucursi.main_menu
+package hollybits.ucursi.services
 
 import androidx.lifecycle.ViewModel;
 
-class MainMenuViewModel : ViewModel() {
+class ServicesMenuViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

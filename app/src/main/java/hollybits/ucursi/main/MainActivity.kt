@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.navigation.Navigation
 import hollybits.ucursi.R
 import hollybits.ucursi.login.LoginFragment
-import hollybits.ucursi.main_menu.MainMenuFragment
+import hollybits.ucursi.services.MainMenuFragment
 import hollybits.ucursi.splash.SplashFragment
 
 class MainActivity : AppCompatActivity(),

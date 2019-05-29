@@ -16,7 +16,7 @@
     <fragment android:id="@+id/testDataShower"
               android:label="fragment_test_data_shower" tools:layout="@layout/fragment_test_data_shower"
               android:name="hollybits.ucursi.common.TestDataShower"/>
-    <fragment android:id="@+id/mainMenuFragment" android:name="hollybits.ucursi.main_menu.MainMenuFragment"
+    <fragment android:id="@+id/mainMenuFragment" android:name="hollybits.ucursi.services.MainMenuFragment"
               android:label="main_menu_fragment" tools:layout="@layout/main_menu_fragment">
         <action android:id="@+id/action_mainMenuFragment_to_personalAccount" app:destination="@id/personalAccount"/>
         <action android:id="@+id/action_mainMenuFragment_to_orderDocumentFragment"

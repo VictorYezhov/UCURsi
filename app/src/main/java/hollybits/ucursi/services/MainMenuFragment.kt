@@ -1,4 +1,4 @@
-package hollybits.ucursi.main_menu
+package hollybits.ucursi.services
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
@@ -22,7 +22,7 @@ class MainMenuFragment : Fragment() {
         fun moveToOrderDocument()
     }
 
-    private lateinit var viewModel: MainMenuViewModel
+    private lateinit var viewModel: ServicesMenuViewModel
     private var events:MainMenuEvents? = null
 
     override fun onAttach(context: Context) {
@@ -43,7 +43,7 @@ class MainMenuFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ServicesMenuViewModel::class.java)
 
         documentCardView.setOnClickListener {
             events!!.moveToOrderDocument()
