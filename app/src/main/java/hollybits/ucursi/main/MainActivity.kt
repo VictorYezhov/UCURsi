@@ -3,6 +3,7 @@ package hollybits.ucursi.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.navigation.Navigation
 import hollybits.ucursi.R
 import hollybits.ucursi.login.LoginFragment
@@ -22,15 +23,6 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        accountImageView.setOnClickListener {
-            moveToAccount()
-        }
-
-        infoImageView.setOnClickListener {
-            moveToInfoMenu()
-        }
     }
 
 
@@ -41,7 +33,7 @@ class MainActivity : AppCompatActivity(),
 
 
 
-    private fun moveToInfoMenu(){
+    override fun moveToInfoMenu(){
         Log.i(TAG, "moveToInfoMenu")
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_mainMenuFragment_to_infoMenuFragment)
     }
@@ -53,6 +45,11 @@ class MainActivity : AppCompatActivity(),
     override fun moveToOrderDocument() {
         Log.i(TAG, "moveToOrderDocument")
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.orderDocumentFragment)
+    }
+
+    override fun moveToPrinterInfo() {
+        Log.i(TAG, "moveToPrinterInfo")
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_mainMenuFragment_to_printerInfoFragment)
     }
 
     override fun userIsAlreadyLoggedIn() {

@@ -20,6 +20,8 @@ class MainMenuFragment : Fragment() {
     interface MainMenuEvents{
         fun moveToAccount()
         fun moveToOrderDocument()
+        fun moveToPrinterInfo()
+        fun moveToInfoMenu()
     }
 
     private lateinit var viewModel: ServicesMenuViewModel
@@ -47,6 +49,17 @@ class MainMenuFragment : Fragment() {
         documentCardView.setOnClickListener {
             events!!.moveToOrderDocument()
         }
+        printerCard.setOnClickListener {
+            events!!.moveToPrinterInfo()
+        }
+        accountImageView.setOnClickListener {
+            events!!.moveToAccount()
+        }
+
+        infoImageView.setOnClickListener {
+            events!!.moveToInfoMenu()
+        }
+
     }
 
     override fun onDetach() {

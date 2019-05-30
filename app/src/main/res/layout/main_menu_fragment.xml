@@ -49,6 +49,7 @@
             app:layout_constraintEnd_toStartOf="@+id/documentCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/printerCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 

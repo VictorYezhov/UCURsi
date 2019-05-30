@@ -6,4 +6,7 @@
 
     <string name="server_client_id">908857506536-m3a1rga9jpg0o818dpmurnurrmsq7emr.apps.googleusercontent.com</string>
     <string name="wifi_text">How to connect to wifi?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
